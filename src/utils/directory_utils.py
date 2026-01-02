@@ -11,7 +11,7 @@ def ensure_directory(path):
     Ensure that a directory exists, creating it if necessary.
     
     Args:
-        path (str): Path to the directory
+        path (str or Path): Path to the directory
         
     Returns:
         Path: The Path object for the directory

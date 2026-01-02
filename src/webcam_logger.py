@@ -94,7 +94,7 @@ class FaceRecognitionLogger:
         """
         timestamp = get_timestamp()
         log_filename = self.log_dir / f"face_log_{timestamp}.txt"
-        self.log_file = open(log_filename, 'w')
+        self.log_file = open(log_filename, 'w', encoding='utf-8')
         self.log_file.write(f"Face Recognition Log - {timestamp}\n")
         self.log_file.write("=" * 50 + "\n\n")
         print(f"Logging to: {log_filename}")
@@ -144,12 +144,10 @@ class FaceRecognitionLogger:
                 
                 # Use the known face with the smallest distance to the new face
                 face_distances = face_recognition.face_distance(self.known_face_encodings, face_encoding)
-                
-                if len(face_distances) > 0:
-                    best_match_index = np.argmin(face_distances)
-                    if matches[best_match_index]:
-                        name = self.known_face_names[best_match_index]
-                        self.log_recognition(name)
+                best_match_index = np.argmin(face_distances)
+                if matches[best_match_index]:
+                    name = self.known_face_names[best_match_index]
+                    self.log_recognition(name)
                 
                 self.face_names.append(name)
         

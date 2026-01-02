@@ -65,15 +65,16 @@ class FaceDatabase:
             print(f"Loading images for {person_name}: {len(image_files)} images")
             encodings_loaded = 0
             
-            for image_path in image_files:
+            for i, image_path in enumerate(image_files, 1):
+                print(f"  Processing {person_name} ({i}/{len(image_files)}): {image_path.name}", end='\r')
                 encoding = self._load_face_encoding(image_path, person_name)
                 if encoding is not None:
                     self.known_face_encodings.append(encoding)
                     self.known_face_names.append(person_name)
                     encodings_loaded += 1
             
+            print(f"  Loaded {encodings_loaded} encodings for {person_name}                    ")
             self.encoding_count[person_name] = encodings_loaded
-            print(f"  Loaded {encodings_loaded} encodings for {person_name}")
         
         print(f"\nTotal faces loaded: {len(self.known_face_encodings)}")
         print(f"Unique persons: {len(self.encoding_count)}")
