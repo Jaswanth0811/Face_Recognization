@@ -37,6 +37,8 @@ Face_Recognization/
 1. Clone the repository:
 ```bash
 git clone https://github.com/Jaswanth0811/Face_Recognization.git
+```
+```bash
 cd Face_Recognization
 ```
 
@@ -72,6 +74,8 @@ data/faces/
 
 ```bash
 cd src
+```
+```bash
 python webcam_logger.py
 ```
 
